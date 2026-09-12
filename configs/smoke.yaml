@@ -1,0 +1,50 @@
+run_name: smoke
+out_base: experiments
+
+dataset:
+  name: HuggingFaceH4/MATH-500
+  split: test
+  indices: [0, 1, 2, 3, 4]
+
+generation:
+  temperature: 0.6
+  top_p: 0.95
+  max_tokens: 16384
+  seed: 0
+  n: 1
+
+vllm:
+  dtype: bfloat16
+  gpu_memory_utilization: 0.90
+  max_model_len: 20000
+  trust_remote_code: true
+
+# Declarative CoT formats. These are best-guess defaults; Step 1's purpose is to
+# verify them against the actual model outputs. Edit here, not in code.
+formats:
+  orz:
+    chat: false
+    prompt_template: |
+      A conversation between User and Assistant. The User asks a question, and the Assistant solves it. The Assistant first thinks about the reasoning process and then provides the answer. The reasoning process is enclosed within <think> </think> and the final answer within <answer> </answer>, with the answer in \boxed{{}}.
+      User: {problem}
+      Assistant: <think>
+    think_open: <think>
+    think_close: </think>
+    answer_open: <answer>
+    answer_close: </answer>
+  openthinker:
+    chat: true
+    system_prompt: null
+    user_template: "{problem}\n\nPut your final answer within \\boxed{{}}."
+    think_open: <|begin_of_thought|>
+    think_close: <|end_of_thought|>
+    answer_open: <|begin_of_solution|>
+    answer_close: <|end_of_solution|>
+
+models:
+  - id: orz
+    model_name: Open-Reasoner-Zero/Open-Reasoner-Zero-7B
+    format: orz
+  - id: openthinker
+    model_name: open-thoughts/OpenThinker-7B
+    format: openthinker

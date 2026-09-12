@@ -1,0 +1,91 @@
+run_name: exp1_scale
+out_base: experiments
+dataset:
+  name: HuggingFaceH4/MATH-500
+  split: test
+indices:
+- 15
+- 26
+- 50
+- 63
+- 82
+- 88
+- 118
+max_prefixes: 30
+base_generation:
+  n: 4
+  temperature: 0.6
+  top_p: 0.95
+  max_tokens: 16384
+  seed: 0
+resample:
+  n: 10
+  temperature: 0.6
+  top_p: 0.95
+  max_tokens: 16384
+  seed: 0
+noise_threshold: 0.2
+labeler:
+  model_name: Qwen/Qwen2.5-32B-Instruct-AWQ
+  generation:
+    temperature: 0.0
+    top_p: 1.0
+    max_tokens: 4096
+    seed: 0
+  vllm:
+    quantization: awq_marlin
+    dtype: float16
+    gpu_memory_utilization: 0.9
+    max_model_len: 32768
+    trust_remote_code: true
+vllm:
+  dtype: bfloat16
+  gpu_memory_utilization: 0.9
+  max_model_len: 20000
+  trust_remote_code: true
+models:
+- id: orz
+  model_name: Open-Reasoner-Zero/Open-Reasoner-Zero-7B
+  format: orz
+- id: openthinker
+  model_name: open-thoughts/OpenThinker-7B
+  format: openthinker
+categories:
+- initializing
+- deduction
+- adding-knowledge
+- example-testing
+- uncertainty-estimation
+- backtracking
+formats:
+  orz:
+    chat: false
+    prompt_template: 'A conversation between User and Assistant. The User asks a question,
+      and the Assistant solves it. The Assistant first thinks about the reasoning
+      process and then provides the answer. The reasoning process is enclosed within
+      <think> </think> and the final answer within <answer> </answer>, with the answer
+      in \boxed{{}}.
+
+      User: {problem}
+
+      Assistant: <think>
+
+      '
+    think_open: <think>
+    think_close: </think>
+    answer_open: <answer>
+    answer_close: </answer>
+    think_open_in_prompt: true
+  openthinker:
+    chat: true
+    system_prompt: null
+    user_template: '{problem}
+
+
+      Put your final answer within \boxed{{}}.'
+    think_open: <|begin_of_thought|>
+    think_close: <|end_of_thought|>
+    answer_open: <|begin_of_solution|>
+    answer_close: <|end_of_solution|>
+    think_open_in_prompt: false
+_saved_at: '2026-09-12T01:32:47'

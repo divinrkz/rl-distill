@@ -1,0 +1,23 @@
+# Upstream reference repos — cloned separately on the box (see SETUP.md)
+externals/
+
+# Run outputs — never commit results
+# experiments/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Model / data caches
+*.pt
+*.safetensors
+.cache/
+
+# OS
+.DS_Store
+
+.claude/
+CLAUDE.md
+hf.txt 

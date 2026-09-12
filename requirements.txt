@@ -1,0 +1,11 @@
+# GPU box. vLLM pulls in a compatible torch + transformers.
+# numpy<2: Lightning's base env has scipy built against NumPy 1.x, which crashes
+# under NumPy 2 when datasets imports scipy.
+numpy<2
+vllm
+transformers
+accelerate
+datasets
+math-verify
+pyyaml
+matplotlib

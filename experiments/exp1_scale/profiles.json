@@ -1,0 +1,56 @@
+{
+  "orz": {
+    "n_problems": 7,
+    "raw_mean": {
+      "initializing": 0.34254148629148634,
+      "deduction": 0.2515782828282828,
+      "adding-knowledge": 0.3156024531024531,
+      "example-testing": 0.07837301587301586,
+      "uncertainty-estimation": 0.011904761904761904,
+      "backtracking": 0.0
+    },
+    "thresholded_mean": {
+      "initializing": 0.26165413533834586,
+      "deduction": 0.05864661654135339,
+      "adding-knowledge": 0.18446115288220552,
+      "example-testing": 0.06666666666666667,
+      "uncertainty-estimation": 0.0,
+      "backtracking": 0.0
+    },
+    "thresholded_std": {
+      "initializing": 0.37026086575768263,
+      "deduction": 0.09277110866278004,
+      "adding-knowledge": 0.3390168784761079,
+      "example-testing": 0.1632993161855452,
+      "uncertainty-estimation": 0.0,
+      "backtracking": 0.0
+    }
+  },
+  "openthinker": {
+    "n_problems": 7,
+    "raw_mean": {
+      "initializing": 0.10709190625339694,
+      "deduction": 0.5836002307726993,
+      "adding-knowledge": 0.15786544541852934,
+      "example-testing": 0.03747310890168033,
+      "uncertainty-estimation": 0.04158730158730158,
+      "backtracking": 0.07238200706639245
+    },
+    "thresholded_mean": {
+      "initializing": 0.06666666666666667,
+      "deduction": 0.4268167550074983,
+      "adding-knowledge": 0.11071929473051492,
+      "example-testing": 0.0,
+      "uncertainty-estimation": 0.03245842516529753,
+      "backtracking": 0.07762457271573682
+    },
+    "thresholded_std": {
+      "initializing": 0.1632993161855452,
+      "deduction": 0.3857122861065096,
+      "adding-knowledge": 0.16573962726210054,
+      "example-testing": 0.0,
+      "uncertainty-estimation": 0.05210378585318213,
+      "backtracking": 0.09752718047404332
+    }
+  }
+}
